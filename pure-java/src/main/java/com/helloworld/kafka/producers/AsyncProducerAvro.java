@@ -15,12 +15,11 @@ import org.apache.avro.generic.GenericRecord;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class AsyncProducerAvro {
-
-    private static final Logger log = LoggerFactory.getLogger(AsyncProducerAvro.class);
 
     public static void main(final String[] args) throws IOException {
         // Configuración del productor

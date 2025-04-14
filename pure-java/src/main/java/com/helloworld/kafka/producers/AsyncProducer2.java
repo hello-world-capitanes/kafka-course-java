@@ -1,21 +1,18 @@
 package com.helloworld.kafka.producers;
 import java.io.IOException;
-import java.lang.invoke.MethodHandles;
 import java.util.Properties;
 import java.util.Random;
-import java.util.concurrent.Future;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class AsyncProducer2 {
 
-	private static final Logger log = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-	
     public static void main(final String[] args) throws IOException {
         // Configuración del productor
         Properties props = new Properties();

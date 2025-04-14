@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.4</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.helloworld.kafka</groupId>
+	<artifactId>curso-kafka</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>curso-kafka</name>
+	<description>Ejemplos para el curso kafka</description>
+	<packaging>pom</packaging> <!-- Importante especificar que es un POM de tipo 'pom' -->
+    <modules>
+        <module>pure-java</module>
+        <module>spring-java</module>
+    </modules>
+</project>
