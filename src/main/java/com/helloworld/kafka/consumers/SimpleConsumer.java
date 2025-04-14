@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.kafka.common.serialization.StringDeserializer;
 
 
 public class SimpleConsumer {
@@ -31,24 +32,27 @@ public class SimpleConsumer {
         }
 
         final Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:29092");
-        props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        props.put("key.deserializer", StringDeserializer.class);
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         // Define grupo y offset
     	final String consumerGroup = MethodHandles.lookup().lookupClass()+"Group";
         props.put(ConsumerConfig.GROUP_ID_CONFIG, consumerGroup);
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 5);
 
         try (final Consumer<String, String> consumer = new KafkaConsumer<>(props)) {
             consumer.subscribe(Arrays.asList(topic));
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
-                for (ConsumerRecord<String, String> record : records) {
-                    String key = record.key();
-                    String value = record.value();
+                for (ConsumerRecord<String, String> kafkaRecord : records) {
+                    String miTopic = kafkaRecord.topic();
+                    String key = kafkaRecord.key();
+                    String value = kafkaRecord.value();
                     System.out.println(
-                            String.format("Consumed event from topic %s: key = %-10s value = %s", topic, key, value));
+                            String.format("Consumed event from topic %s: key = %-10s value = %s", miTopic, key, value));
                 }
+                //System.out.println("Fin del bloque");
             }
         }
     }

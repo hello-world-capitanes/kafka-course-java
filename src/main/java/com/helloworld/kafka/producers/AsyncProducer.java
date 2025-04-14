@@ -1,14 +1,14 @@
 package com.helloworld.kafka.producers;
-import java.io.IOException;
-import org.apache.kafka.common.serialization.StringSerializer;
 import java.lang.invoke.MethodHandles;
 import java.util.Properties;
 import java.util.Random;
+
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
-import org.apache.kafka.clients.producer.Callback;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +25,7 @@ public class AsyncProducer {
         
         final Producer<String, String> producer = new KafkaProducer<>(props);
 
-        final String topic = "topic-varias-particiones";
+        final String topic = "test-topic";
         String[] users = {"eabara", "jsmith", "sgarcia", "jbernard", "htanaka", "awalther", "22"};
         String[] items = {"book", "alarm clock", "t-shirts", "gift card", "batteries"};
             

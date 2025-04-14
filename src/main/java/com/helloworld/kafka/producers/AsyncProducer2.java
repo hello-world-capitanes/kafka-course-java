@@ -33,7 +33,7 @@ public class AsyncProducer2 {
         final Long numMessages = 10L;
         for (Long i = 0L; i < numMessages; i++) {
             String user = users[rnd.nextInt(users.length)];
-            String item = items[rnd.nextInt(items.length)];
+            String item = "lambda "+items[rnd.nextInt(items.length)];
 
             producer.send(
             		new ProducerRecord<>(topic, user, item),

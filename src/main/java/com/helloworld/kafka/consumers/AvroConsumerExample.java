@@ -4,10 +4,13 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 
+import org.apache.avro.generic.GenericRecord;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+
+import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 
 
 public class AvroConsumerExample {
@@ -15,14 +18,14 @@ public class AvroConsumerExample {
         // Configuración del consumidor
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "avro-consumer-group");
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "avro6-consumer-group");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaAvroDeserializer");
         props.put("schema.registry.url", "http://localhost:8085"); // URL del Schema Registry
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         // Crear consumidor
-        KafkaConsumer<String, Object> consumer = new KafkaConsumer<>(props);
+        KafkaConsumer<GenericRecord, GenericRecord> consumer = new KafkaConsumer<>(props);
         final String topic = "test-topic-avro";
 
         // Suscribirse al topic
@@ -31,11 +34,10 @@ public class AvroConsumerExample {
         // Procesar mensajes
         try {
             while (true) {
-                ConsumerRecords<String, Object> records = consumer.poll(Duration.ofMillis(100));
-                records.forEach(message -> 
-                    System.out.printf("Consumed record with key %s and value %s",
-                            message.key(), message.value().toString())
-                );
+                ConsumerRecords<GenericRecord, GenericRecord> records = consumer.poll(Duration.ofMillis(100));
+                records.forEach(message -> {
+                    System.out.println("Clave: "+ message.key().get("key")+" Nombre: "+ message.value().get("name"));
+                });
             }
         } finally {
             consumer.close();
