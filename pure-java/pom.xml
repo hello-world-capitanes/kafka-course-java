@@ -146,8 +146,8 @@
 							<goal>idl-protocol</goal>
 						</goals>
 						<configuration>
-							<sourceDirectory>${project.basedir}/pure-java/src/main/resources/</sourceDirectory>
-							<outputDirectory>${project.basedir}/pure-java/src/main/java/</outputDirectory>
+							<sourceDirectory>${project.basedir}/src/main/resources/</sourceDirectory>
+							<outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>

@@ -6,7 +6,7 @@ Este documento proporciona instrucciones sobre cómo utilizar el sistema de lanz
 
 - Docker y Docker Compose instalados
 - Maven instalado
-- Java 8 o superior instalado
+- Java 17 o superior instalado
 
 ## Estructura del proyecto
 
@@ -17,13 +17,18 @@ El proyecto contiene varios ejemplos de productores y consumidores de Kafka, tan
   - **simpleconsumer/**: Consumidor simple
   - **asyncproducer/**: Productor asíncrono
   - **jsonasyncproducer/**: Productor asíncrono con JSON
-  - **exactlyonceconsumer/**: Consumidor con garantía exactly-once
   - **delivery-garantees/**: Ejemplos de garantías de entrega
     - **at-least-once/**: Garantía at-least-once
     - **at-most-once/**: Garantía at-most-once
     - **exactly-once/**: Garantía exactly-once
 
 - **pure-java/**: Ejemplos usando Java puro (sin Spring)
+
+## Compilación
+
+```bash
+mvn clean compile
+```
 
 ## Sistema de lanzamiento
 
