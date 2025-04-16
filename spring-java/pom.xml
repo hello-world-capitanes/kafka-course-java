@@ -19,7 +19,7 @@
         <module>simpleproducer</module>
         <module>asyncproducer</module>
         <module>jsonasyncproducer</module>
-        <module>exactlyonceconsumer</module>
+		<module>delivery-garantees</module>
     </modules>
 	<properties>
 		<java.version>17</java.version>
