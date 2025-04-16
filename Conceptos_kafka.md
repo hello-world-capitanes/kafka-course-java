@@ -44,7 +44,7 @@ Podemos abrir dos terminales para sobre contenedor docker-kafka-1. En uno de ell
 * Leer todos los mensajes y no solo los que se creen nuevos
 
   ```bash
-  kafka-console-consumer --bootstrap-server localhost:9092 --topic topic-test --from-beginning
+  kafka-console-consumer --bootstrap-server localhost:29092 --topic topic-test --from-beginning
   ```
 
 * Borrado de topics
